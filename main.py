@@ -20,13 +20,31 @@ api = tweepy.API(auth)
 
 app = flask.Flask(__name__)
 
+food = ["ice cream","pizza","sushi","ramen","tacos","cheeseburger","mac and cheese","fried chicken","hamburger"]
+
+
+tweetcontent = ""
+tweetauthor  = ""
+tweetdate    = ""
+    
 
 @app.route('/')
 def index():
-    return flask.render_template("index.html")
+    tweets = api.search(q=random.choice(food),lang="en",count=100)
+    tweets_list = []
+    
+    for tweet in tweets:
+        tweets_list.append(tweet)
+
+    tweet2 = random.choice(tweets_list)
+    tweetcontent = tweet2.text
+    tweetdate = tweet2.created_at
+    tweetauthor = tweet2.user.screen_name
+    return flask.render_template("index.html",tweet_content=tweetcontent,tweet_date=tweetdate,tweet_author=tweetauthor)
     
 app.run(
      debug= True,
       port=int(os.getenv('PORT',8080)),
       host= os.getenv('IP','0.0.0.0')
     )
+
