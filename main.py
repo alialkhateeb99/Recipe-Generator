@@ -18,7 +18,6 @@ auth.set_access_token(twitter_access_token,twitter_access_token_secret)
 api = tweepy.API(auth)
 
 
-
 app = flask.Flask(__name__)
 
 
