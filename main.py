@@ -4,7 +4,6 @@ import os
 import random
 from tweepy import Cursor
 
-
 twitter_consumer_key = os.environ['KEY']
 twitter_consumer_secret = os.environ['KEY_SECRET']
 
@@ -24,23 +23,30 @@ food = ["ice cream","pizza","sushi","ramen","tacos","cheeseburger","mac and chee
 
 
 tweetcontent = ""
-tweetauthor  = ""
+tweetauthor  = "hey"
 tweetdate    = ""
     
 
 @app.route('/')
 def index():
-    tweets = api.search(q=random.choice(food),lang="en",count=100)
+    randomfoodname= random.choice(food)
+    tweets = api.search(q=randomfoodname,lang="en",count=5)
     tweets_list = []
     
     for tweet in tweets:
         tweets_list.append(tweet)
 
     tweet2 = random.choice(tweets_list)
+
     tweetcontent = tweet2.text
     tweetdate = tweet2.created_at
     tweetauthor = tweet2.user.screen_name
-    return flask.render_template("index.html",tweet_content=tweetcontent,tweet_date=tweetdate,tweet_author=tweetauthor)
+    
+    return flask.render_template("index.html",
+    foodname=randomfoodname,
+    tweet_content=tweetcontent,
+    tweet_date=tweetdate,
+    tweet_author=tweetauthor)
     
 app.run(
      debug= True,

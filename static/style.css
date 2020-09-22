@@ -1,8 +1,12 @@
-
+body{
+    background-color:black;
+}
 
 #header{
     text-align:center;
     padding:6px;
+    color:white;
+    
     
 }
 #tweetbox{
@@ -10,9 +14,14 @@
     height:500px;
     background:grey;
     border:2px solid red;
-    outline:2px #fff solid;
+    /* outline:2px #fff solid; */
     margin:0 auto;
+    border-radius:10%;
     
+}
+#tweet-text{
+    padding-top:75px;
+
 }
 
 .test{
