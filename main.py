@@ -26,7 +26,7 @@ tweetdate    = ""
 @app.route('/')
 def index():
     randomfoodname= random.choice(food)
-    tweets = api.search(q=randomfoodname,lang="en",count=5,tweet_mode='extended')
+    tweets = api.search(q=randomfoodname,lang="en",count=50,tweet_mode='extended')
     tweets_list = []
     
     for tweet in tweets:
