@@ -54,7 +54,7 @@
 ## Build and Run
 
 - Run  ``` python main.py ``` in your enviroment.
-- If on Cloud9, preview templates/index.html. This should successfully render the HTML!
+- If on Cloud9, preview templates/index.html. This should successfully render the HTML.
 
 ## Technical Issues
 
