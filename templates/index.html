@@ -4,13 +4,13 @@
     <head>
         
        <meta charset="utf-8">
-        <link rel="stylesheet" href={{ url_for('static',filename='style.css') }} />
+        <link rel="stylesheet" type="text/css" href={{ url_for('static',filename='style.css') }} />
        <title> Project 1 </title>
     </head>
 
     <body>
         <div id="header">
-            <h1> Food Tweets!! </h1> 
+            <h1> Recipes and Tweets </h1> 
         </div>
         <div id="tweetbox">
             <h2 class="test"> Food: {{ foodname }} </h2>
@@ -23,20 +23,27 @@
             <div id="foodbox">
                 <h2 class="test"> {{ foodTitle }} </h3>
                 <p class="test"> Serving size: {{ foodServings }} </p>
-                <p class="test"> Preparation Time : {{ foodPrepTime }}  </p>
-                <h3 class="test">  Ingredients:   </h3>
-                <ol>
+                <p class="test"> Preparation Time : {{ foodPrepTime }} minutes  </p>
+                {% block content %}
+                    {% if foodImageUrl != "undefined" %}
+                        <img id="foodimage" src={{ foodImageUrl }} >
+                     {% else %}
+                             <p class="test"> No image found! </p> 
+                    {% endif %}
+                {% endblock content %}
+            </div>
+        </div>
+        <div id="ingredients"> 
+            <h2 class="test">  Ingredients:   </h3>
+                <ul class="test">
                     {%for i in range(0, foodIngredientsLength)%} 
                         <li>{{foodIngredients[i]}}</li> 
                     {%endfor%} 
-                </ol>
-                <p class="test">  {{ foodSourceUrl }}    </p>
-                <img src={{ foodImageUrl }} style="width:200px;height:200px;">
-                <p class="test">     </p>
-                <p class="test">     </p>
-
-            </div>
+                </ul>
+                <div class="test">
+                    <p href="{{foodSourceUrl}}">  {{ foodSourceUrl }}    </p>
+                </div>
         </div>
-        
+
     </body>
 </html>

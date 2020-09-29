@@ -22,14 +22,13 @@ twitter_access_token_secret = os.environ['TOKEN_SECRET']
 spoonacular_key = os.environ['SPOONACULAR_KEY']
 
 
-
 auth = tweepy.OAuthHandler(twitter_consumer_key,twitter_consumer_secret)
 auth.set_access_token(twitter_access_token,twitter_access_token_secret)
 
 api = tweepy.API(auth)
 app = flask.Flask(__name__)
 
-food = ["ice cream","pizza","sushi","ramen","tacos","cheeseburger","mac and cheese","fried chicken","hamburger"]
+food = ["ice cream","pizza","sushi","ramen","tacos","macaroni","chicken","hamburger","eggs","salad"]
 
 tweetcontent = ""
 tweetauthor  = ""
@@ -38,14 +37,14 @@ tweetdate    = ""
 
 @app.route('/')
 def index():
-    numberOfItems = 3
+    numberOfItems = 20
     randomfoodname = random.choice(food)
     fetch_id_url   = "https://api.spoonacular.com/recipes/complexSearch?query={}&number={}&apiKey={}".format(randomfoodname,numberOfItems,spoonacular_key)
     
     response  = requests.get(fetch_id_url)
     json_body = response.json()
-    
-    id_to_fetch = json_body["results"][random.randint(0,numberOfItems-1)]["id"]
+
+    id_to_fetch = json_body["results"][random.randint(0,5)]["id"]
     
     fetch_food_information_url = "https://api.spoonacular.com/recipes/{}/information?&apiKey={}".format(id_to_fetch,spoonacular_key)
     
@@ -55,9 +54,13 @@ def index():
     food_title      = json_body2["title"]
     food_servings   = json_body2["servings"]
     food_prep_time  = json_body2["readyInMinutes"]
-    food_image_url  = json_body2["image"]
     food_source_url = json_body2["sourceUrl"]
+    try:
+        food_image_url  = json_body2["image"]
+    except:
+        food_image_url = "undefined"
 
+    
     ingredients = []
     for x in json_body2["extendedIngredients"]:
         ingredients.append(x["originalString"])

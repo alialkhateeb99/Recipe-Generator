@@ -1,27 +1,45 @@
 body{
-    background-color:#ecb7bf;
+    /* ffbec9  */
+    background-color:#e0bcbf;
+    margin:0;
 }
 
 #header{
     text-align:center;
-    padding:6px;
-    color:white;
-    
-    
+    color:black;
+}
+#ingredients{
+    width:700px;
+    height:700px;
+    border:5px solid #2d545e;
+    float:right;
+    margin-right:10%;
+    background:#f1a3ad;
+    border-radius:10%;
+}
+#foodimage{
+    margin-left:30%;
+    width:400px;
+    height:300px;
 }
 #tweetbox{
     width:900px;
-    height:800px;
-    background:grey;
-    border:2px solid red;
+    height:700px;
+    background:#f1a3ad;
+    border:5px solid #2d545e;
     /* outline:2px #fff solid; */
-    margin:0 auto;
+    margin-left:40px;
     border-radius:10%;
+    margin-top:-10px;
+    padding-bottom:30px;
+    position:relative;
+    float:left;
     
 }
 #tweet-text{
-    padding-top:15px;
-
+    border:5px solid  #f1a3ad;
+    background:#d7b0b6;
+    border-radius:10%;
 }
 
 .test{
