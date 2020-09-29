@@ -38,13 +38,14 @@ tweetdate    = ""
 
 @app.route('/')
 def index():
+    numberOfItems = 3
     randomfoodname = random.choice(food)
-    fetch_id_url   = "https://api.spoonacular.com/recipes/complexSearch?query={}&number={}&apiKey={}".format(randomfoodname,3,spoonacular_key)
+    fetch_id_url   = "https://api.spoonacular.com/recipes/complexSearch?query={}&number={}&apiKey={}".format(randomfoodname,numberOfItems,spoonacular_key)
     
     response  = requests.get(fetch_id_url)
     json_body = response.json()
     
-    id_to_fetch = json_body["results"][0]["id"]
+    id_to_fetch = json_body["results"][random.randint(0,numberOfItems-1)]["id"]
     
     fetch_food_information_url = "https://api.spoonacular.com/recipes/{}/information?&apiKey={}".format(id_to_fetch,spoonacular_key)
     
@@ -54,7 +55,8 @@ def index():
     food_title      = json_body2["title"]
     food_servings   = json_body2["servings"]
     food_prep_time  = json_body2["readyInMinutes"]
-    food_image_url  = json_body2["image"]
+    if (len(json_body2["image"]) > 5):
+        food_image_url  = json_body2["image"]
     food_source_url = json_body2["sourceUrl"]
 
     ingredients = []
