@@ -3,12 +3,20 @@ import tweepy
 import os
 import random
 from tweepy import Cursor
+import requests
+from os.path import join, dirname
+from dotenv import load_dotenv
+import json
+
+dotenv_path = join(dirname(__file__), 'spoonacularkeys.env')
+load_dotenv(dotenv_path)
 
 twitter_consumer_key = os.environ['KEY']
 twitter_consumer_secret = os.environ['KEY_SECRET']
 twitter_access_token = os.environ['TOKEN']
 twitter_access_token_secret = os.environ['TOKEN_SECRET']
 
+spoonacular_key = os.environ['SPOONACULAR_KEY']
 
 auth = tweepy.OAuthHandler(twitter_consumer_key,twitter_consumer_secret)
 auth.set_access_token(twitter_access_token,twitter_access_token_secret)
@@ -26,7 +34,7 @@ tweetdate    = ""
 @app.route('/')
 def index():
     randomfoodname= random.choice(food)
-    tweets = api.search(q=randomfoodname,lang="en",count=50,tweet_mode='extended')
+    tweets = api.search(q=randomfoodname,lang="en",count=5,tweet_mode='extended')
     tweets_list = []
     
     for tweet in tweets:
