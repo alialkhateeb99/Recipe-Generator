@@ -55,8 +55,7 @@ def index():
     food_title      = json_body2["title"]
     food_servings   = json_body2["servings"]
     food_prep_time  = json_body2["readyInMinutes"]
-    if (len(json_body2["image"]) > 5):
-        food_image_url  = json_body2["image"]
+    food_image_url  = json_body2["image"]
     food_source_url = json_body2["sourceUrl"]
 
     ingredients = []
