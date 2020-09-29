@@ -43,8 +43,9 @@ def index():
     
     response  = requests.get(fetch_id_url)
     json_body = response.json()
+    length = len(json_body["results"])
 
-    id_to_fetch = json_body["results"][random.randint(0,5)]["id"]
+    id_to_fetch = json_body["results"][random.randint(0,length-1)]["id"]
     
     fetch_food_information_url = "https://api.spoonacular.com/recipes/{}/information?&apiKey={}".format(id_to_fetch,spoonacular_key)
     
@@ -66,6 +67,7 @@ def index():
         ingredients.append(x["originalString"])
     ingredients_length = len(ingredients)
     
+        
     tweets = api.search(q=randomfoodname,lang="en",count=5,tweet_mode='extended')
     tweets_list = []
     
