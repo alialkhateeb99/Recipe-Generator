@@ -19,6 +19,23 @@
                 <p class="test">   {{ tweet_content }} <br> {{ tweet_date }}   </p>
                 <p class="test"> {{ tweet_author }} </p>
             </div>
+            
+            <div id="foodbox">
+                <h2 class="test"> {{ foodTitle }} </h3>
+                <p class="test"> Serving size: {{ foodServings }} </p>
+                <p class="test"> Preparation Time : {{ foodPrepTime }}  </p>
+                <h3 class="test">  Ingredients:   </h3>
+                <ol>
+                    {%for i in range(0, foodIngredientsLength)%} 
+                        <li>{{foodIngredients[i]}}</li> 
+                    {%endfor%} 
+                </ol>
+                <p class="test">  {{ foodSourceUrl }}    </p>
+                <img src={{ foodImageUrl }} style="width:200px;height:200px;">
+                <p class="test">     </p>
+                <p class="test">     </p>
+
+            </div>
         </div>
         
     </body>

@@ -1,5 +1,5 @@
 body{
-    background-color:black;
+    background-color:#ecb7bf;
 }
 
 #header{
@@ -10,8 +10,8 @@ body{
     
 }
 #tweetbox{
-    width:600px;
-    height:500px;
+    width:900px;
+    height:800px;
     background:grey;
     border:2px solid red;
     /* outline:2px #fff solid; */
@@ -20,7 +20,7 @@ body{
     
 }
 #tweet-text{
-    padding-top:75px;
+    padding-top:15px;
 
 }
 
